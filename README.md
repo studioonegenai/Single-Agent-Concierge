@@ -1,10 +1,37 @@
-# The "Civics Concierge" Architecture: Service Agent
+# Project: Google ADK Web - Assisted App Development (Part A - Single Agent - Service Concierge)
+Framework: Google Agent Development Kit (ADK)
+Model: Gemini 1.5 Flash
+Domain: Municipal "Smart City" Governance
+Methodology: SPECIFY (Spec-Driven Development)
 
+# Overview & Architecture
+The Service Concierge is the foundational single-agent prototype developed for Part A of the Oxford AI Engineering assignment. It serves as a unified entry point for citizens to interact with local government services. This architecture was repurposed from a customer service template cloned from the Google ADK library. 
+### Agent Base Architecture (ADK customer service template)
+
+![Customer Service Agent Workflow](customer_service_workflow.png)
+# Following the SPECIFY loop
+I identified that the core logic required for "Product Inquiries" and "Service Scheduling" in a retail context shared a robust architectural foundation with "Policy Inquiries" and "Maintenance Requests" in a municipal context.Shared Foundation: Both systems require intent classification, context injection from a data layer, and tool-calling for scheduling.
+
+The Pivot: I modified the template's logic layer to transition from a retail assistant to a Civic Concierge, replacing commercial product lookups with municipal zoning, waste management, and housing tools.2. Key FeaturesContext-Aware Reasoning: Utilizing the Gemini 1.5 Flash model to handle complex UK local council queries.Modular Tool Suite: Integrated tools for resident verification, parking permit status, and reporting service outages.Traceability: Full observability via the ADK Trace system, allowing for the "Spec-Driven" audit trail required for 
+
+# Assignment 
+Project Structure 
+(Part A)/
+├── agent.yaml           # The core 'service_concierge' specification
+├── prompts/             # 01_single_agent_build.md (Chronological record)
+├── data/                # resident.py (Mock data injection layer)
+└── tools/               # civics_tools.py (Municipal action layer)
+
+# 4. The SPECIFY Journey
+SPARK: 
+Identified the need for a non-generic council assistant that understands specific local policies.PLAN: Mapped the "Home & Garden" template capabilities to the required council specialist domains.EXPERIMENT: Built the single-agent service_concierge to test zero-shot routing accuracy.CONNECT: Linked the agent to mock municipal databases to provide resident-specific history.5. Disclaimer & Development NoteThis agent is a pedagogical artifact created for the Oxford AI Engineering Course. It utilizes the ADK 2026 preview features and is designed for cloud-only execution within the Google Cloud Console environment. It serves as the prerequisite foundation for the Multi-Agent Orchestrator implemented in Part B.
+
+# The "Service Concierge" Architecture: Service Agent
 This project implements an AI-powered customer service agent for Cymbal Home & Garden, a big-box retailer specializing in home improvement, gardening, and related supplies. The agent is designed to provide excellent customer service, assist customers with product selection, manage orders, schedule services, and offer personalized recommendations.
 
 ## Overview
 
-# Project: Civics Concierge AI Agent
+# Project: Service Concierge AI Agent
 
 Framework: Google Agent Development Kit (ADK) 2026
 
@@ -14,8 +41,8 @@ Architecture: Modular Python package with integrated municipal tools.
 
 Key Features: Automated zoning verification, resident-aware service history, and visual inspection scheduling via secure companion links.
 
-# 🏛️ The "Civics Concierge" Architecture: Final Review
-Since you’ve crossed the finish line, here is a quick visualization of the robust system you’ve built today. This is exactly the kind of architecture that wins points for production-readiness:
+# 🏛️ The "Service Concierge" Architecture: Final Review
+Summary, a quick visualization of the robust agent architecture for production-readiness:
 
 Data Layer (resident.py): Successfully injecting real-world context (Historic District, Parking Permits) so the agent never feels "generic."
 
@@ -36,7 +63,7 @@ Bash
 ADK_DISABLE_XSRF=True adk web --port 8080 --allow_origins "regex:https://.*\.cloudshell\.dev"
 
 # 🏁 Final Launch Sequence - ADK WEB environment setup
-Once you've updated the imports to be absolute and added the sys.path logic, restart the server with the origin fix:
+Once the imports used absolute pathing and added the sys.path logic, a restart to the server with the origin fix was successful.
 
 Bash
 adk web --port 8080 --allow_origins "regex:https://.*\.cloudshell\.dev"
@@ -45,7 +72,7 @@ INSTRUCTION = """
     You are the official Civics Concierge for City Government. 
     Your mission is to provide frictionless access to municipal services, assist with permit applications, and manage service requests for residents.
 
-**Civics Concierge - Core Capabilities:**
+** Service Concierge - Core Capabilities:**
 
 1.  **Personalized Resident Assistance:**
     * Greet residents by name. Acknowledge their neighborhood and active service requests (e.g., "I see your sidewalk repair request is still in progress").
@@ -70,7 +97,7 @@ INSTRUCTION = """
     * If a request involves an emergency (fire, crime, medical), immediately instruct the user to call 911.
     * For complex issues not covered by your tools, refer the resident to the 311 operator.
 
-**Civics Concierge - Tools:**
+** Service Concierge - Tools:**
 [Updated civics agent tools to match these civic functions]
 * `send_call_companion_link`: For visual inspection of city issues.
 * `access_service_queue`: Retrieves the resident's active city requests.
@@ -80,13 +107,13 @@ INSTRUCTION = """
 * `get_council_schedule`: Retrieves upcoming local meeting times.
 * `generate_permit_qr`: Creates a temporary parking or event permit QR code.
 
-**Civics Concierge - Constraints:**
+** Service Concierge - Constraints:**
 * **ADA Compliance:** Use clear, high-contrast language structure; always use Markdown for tables.
 * **No Hallucinations:** Use tools for all factual data (dates, fees, laws). Never guess.
 * **Privacy:** Never ask for Social Security Numbers or sensitive financial data in the chat.
 
 
-## Civics Concierge - Agent Details
+## Service Concierge - Agent Details
 
 The key features of the Customer Service Agent include:
 
@@ -96,7 +123,7 @@ The key features of the Customer Service Agent include:
 | _Complexity_       | Intermediate            |
 | _Agent Type_       | Single Agent            |
 | _Components_       | Tools, Multimodal, Live |
-| _Vertical_         | Retail                  |
+| _Vertical_         | Governmen               |
 
 ### Agent Base Architecture (ADK customer service template)
 
