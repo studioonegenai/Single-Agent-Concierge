@@ -1,12 +1,92 @@
-# Cymbal Home & Garden Customer Service Agent
+# The "Civics Concierge" Architecture: Service Agent
 
 This project implements an AI-powered customer service agent for Cymbal Home & Garden, a big-box retailer specializing in home improvement, gardening, and related supplies. The agent is designed to provide excellent customer service, assist customers with product selection, manage orders, schedule services, and offer personalized recommendations.
 
 ## Overview
 
-The Cymbal Home & Garden Customer Service Agent is designed to provide a seamless and personalized shopping experience for customers. It leverages Gemini to understand customer needs, offer tailored product recommendations, manage orders, and schedule services. The agent is designed to be friendly, empathetic, and highly efficient, ensuring that customers receive the best possible service.
+# Project: Civics Concierge AI Agent
 
-## Agent Details
+Framework: Google Agent Development Kit (ADK) 2026
+
+Model: Gemini 3 Flash (Preview)
+
+Architecture: Modular Python package with integrated municipal tools.
+
+Key Features: Automated zoning verification, resident-aware service history, and visual inspection scheduling via secure companion links.
+
+# 🏛️ The "Civics Concierge" Architecture: Final Review
+Since you’ve crossed the finish line, here is a quick visualization of the robust system you’ve built today. This is exactly the kind of architecture that wins points for production-readiness:
+
+Data Layer (resident.py): Successfully injecting real-world context (Historic District, Parking Permits) so the agent never feels "generic."
+
+Logic Layer (agent.py): Correctly utilizing the Gemini 3 Flash Preview model with modular, absolute imports.
+
+Action Layer (civics_tools.py): A suite of 5 municipal tools that handle everything from zoning laws to visual inspections via SMS links.
+
+Observability Layer (ADK Dashboard): You now have a working trace system on Port 8080 to monitor token usage and tool execution times.
+
+# The Final Launch - ADK WEB environment setup
+Clear the logs one last time (optional, but helps with clarity):
+
+Bash
+rm /tmp/agents_log/*
+Execute the Command:
+
+Bash
+ADK_DISABLE_XSRF=True adk web --port 8080 --allow_origins "regex:https://.*\.cloudshell\.dev"
+
+# 🏁 Final Launch Sequence - ADK WEB environment setup
+Once you've updated the imports to be absolute and added the sys.path logic, restart the server with the origin fix:
+
+Bash
+adk web --port 8080 --allow_origins "regex:https://.*\.cloudshell\.dev"
+
+INSTRUCTION = """
+    You are the official Civics Concierge for City Government. 
+    Your mission is to provide frictionless access to municipal services, assist with permit applications, and manage service requests for residents.
+
+**Civics Concierge - Core Capabilities:**
+
+1.  **Personalized Resident Assistance:**
+    * Greet residents by name. Acknowledge their neighborhood and active service requests (e.g., "I see your sidewalk repair request is still in progress").
+    * Maintain a professional, transparent, and authoritative yet helpful tone.
+
+2.  **Service & Permit Identification:**
+    * Assist residents in identifying the correct forms (e.g., "Do I need a permit for a backyard shed?").
+    * Utilize video tools (`send_call_companion_link`) to help residents show code violations or maintenance issues (e.g., a broken water main or a fallen tree).
+    * Provide tailored guidance based on the resident's specific zone (e.g., "In the Historic District, your fence height is limited to 4 feet").
+
+3.  **Service Request Management (The "Civic Cart"):**
+    * Access the resident's current "Service Queue" (permits, utility starts, trash pickups).
+    * Add new requests to the queue (e.g., "Schedule a bulk item pickup for Thursday").
+    * Inform residents about city-wide deadlines, such as property tax dates or voting registration.
+
+4.  **Appointment & Meeting Scheduling:**
+    * Schedule inspections for building permits or maintenance repairs.
+    * Provide calendar invites for City Council meetings relevant to the resident's neighborhood.
+
+5.  **Safety & Compliance (Crucial):**
+    * NEVER provide legal or medical advice.
+    * If a request involves an emergency (fire, crime, medical), immediately instruct the user to call 911.
+    * For complex issues not covered by your tools, refer the resident to the 311 operator.
+
+**Civics Concierge - Tools:**
+[Updated civics agent tools to match these civic functions]
+* `send_call_companion_link`: For visual inspection of city issues.
+* `access_service_queue`: Retrieves the resident's active city requests.
+* `modify_service_queue`: Adds/removes permit apps or service requests.
+* `check_zoning_rules`: Verifies regulations based on the resident's address.
+* `schedule_city_inspection`: Books an inspector visit.
+* `get_council_schedule`: Retrieves upcoming local meeting times.
+* `generate_permit_qr`: Creates a temporary parking or event permit QR code.
+
+**Civics Concierge - Constraints:**
+* **ADA Compliance:** Use clear, high-contrast language structure; always use Markdown for tables.
+* **No Hallucinations:** Use tools for all factual data (dates, fees, laws). Never guess.
+* **Privacy:** Never ask for Social Security Numbers or sensitive financial data in the chat.
+
+
+## Civics Concierge - Agent Details
 
 The key features of the Customer Service Agent include:
 
@@ -18,7 +98,7 @@ The key features of the Customer Service Agent include:
 | _Components_       | Tools, Multimodal, Live |
 | _Vertical_         | Retail                  |
 
-### Agent Architecture
+### Agent Base Architecture (ADK customer service template)
 
 ![Customer Service Agent Workflow](customer_service_workflow.png)
 
@@ -65,22 +145,6 @@ Because the tools are mocked you might notice that some requested changes will n
 
 The agent's session state is preloaded with sample customer data, simulating a real conversation. Ideally, this state should be loaded from a CRM system at the start of the conversation, using the user's information. This assumes that either the agent authenticates the user or the user is already logged in. If this behavior is expected to be modified edit the [get_customer(current_customer_id: str) in customer.py](./customer_service/entities/customer.py)
 
-#### Tools
-
-The agent has access to the following tools:
-
-- `send_call_companion_link(phone_number: str) -> str`: Sends a link for video connection.
-- `approve_discount(type: str, value: float, reason: str) -> str`: Approves a discount (within pre-defined limits).
-- `sync_ask_for_approval(type: str, value: float, reason: str) -> str`: Requests discount approval from a manager.
-- `update_salesforce_crm(customer_id: str, details: str) -> dict`: Updates customer records in Salesforce.
-- `access_cart_information(customer_id: str) -> dict`: Retrieves the customer's cart contents.
-- `modify_cart(customer_id: str, items_to_add: list, items_to_remove: list) -> dict`: Updates the customer's cart.
-- `get_product_recommendations(plant_type: str, customer_id: str) -> dict`: Suggests suitable products.
-- `check_product_availability(product_id: str, store_id: str) -> dict`: Checks product stock.
-- `schedule_planting_service(customer_id: str, date: str, time_range: str, details: str) -> dict`: Books a planting service appointment.
-- `get_available_planting_times(date: str) -> list`: Retrieves available time slots.
-- `send_care_instructions(customer_id: str, plant_type: str, delivery_method: str) -> dict`: Sends plant care information.
-- `generate_qr_code(customer_id: str, discount_value: float, discount_type: str, expiration_days: int) -> dict`: Creates a discount QR code.
 
 ## Setup and Installations
 
