@@ -9,14 +9,14 @@ The Service Concierge is the foundational single-agent prototype developed for P
 ### Agent Base Architecture (ADK customer service template)
 
 ![Customer Service Agent Workflow](customer_service_workflow.png)
-# Following the SPECIFY loop
+# Following the SPECIFY SDD loop
 I identified that the core logic required for "Product Inquiries" and "Service Scheduling" in a retail context shared a robust architectural foundation with "Policy Inquiries" and "Maintenance Requests" in a municipal context.Shared Foundation: Both systems require intent classification, context injection from a data layer, and tool-calling for scheduling.
 
 The Pivot: I modified the template's logic layer to transition from a retail assistant to a Civic Concierge, replacing commercial product lookups with municipal zoning, waste management, and housing tools.2. Key FeaturesContext-Aware Reasoning: Utilizing the Gemini 1.5 Flash model to handle complex UK local council queries.Modular Tool Suite: Integrated tools for resident verification, parking permit status, and reporting service outages.Traceability: Full observability via the ADK Trace system, allowing for the "Spec-Driven" audit trail required for 
 
-# Assignment 
+# Requirements
 Project Structure 
-(Part A)/
+(Phase A)/
 ├── agent.yaml           # The core 'service_concierge' specification
 ├── prompts/             # 01_single_agent_build.md (Chronological record)
 ├── data/                # resident.py (Mock data injection layer)
