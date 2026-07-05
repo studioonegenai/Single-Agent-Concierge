@@ -1,4 +1,4 @@
-# Project: Google ADK Web - Assisted App Development (Part A - Single Agent - Service Concierge)
+# Project: Google ADK Web - AI Assisted App Development (Phase A - Single Agent - Service Concierge)
 Framework: Google Agent Development Kit (ADK)
 Model: Gemini 1.5 Flash
 Domain: Municipal "Smart City" Governance
